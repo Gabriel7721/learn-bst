@@ -1,26 +1,221 @@
-@import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #101119;
+  color: #f5f5f5;
+}
+
+.app-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 16px 24px 40px;
+}
+
+h1 {
+  margin-top: 0;
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.control-panel {
+  background: #181a25;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border: 1px solid #2a2d3b;
+}
+
+.control-panel .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.control-panel label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.control-panel input[type="number"],
+.control-panel select {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #3b3f52;
+  background: #111320;
+  color: #f5f5f5;
+}
+
+.control-panel button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  background: #3f7ee8;
+  color: white;
+  transition: transform 0.1s ease, background 0.1s ease;
+}
+
+.control-panel button:hover {
+  background: #2f68c0;
+  transform: translateY(-1px);
+}
+
+.control-panel button:active {
+  transform: translateY(0);
+}
+
+#speedRange {
+  width: 160px;
+}
+
+#speedLabel {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 16px;
+  align-items: stretch;
+}
+
+.tree-wrapper {
+  background: #181a25;
+  border-radius: 8px;
+  padding: 8px;
+  border: 1px solid #2a2d3b;
+}
+
+#treeSvg {
+  width: 100%;
+  height: 500px;
+  background: radial-gradient(
+    circle at top,
+    #23263b 0,
+    #101119 55%,
+    #040509 100%
+  );
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel {
+  background: #181a25;
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid #2a2d3b;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel h2 {
+  font-size: 16px;
+  margin-top: 0;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #2a2d3b;
+  padding-bottom: 4px;
+}
+
+#pseudoCode {
+  margin: 0;
+  padding: 8px;
+  background: #10121c;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: pre;
+  overflow: auto;
+  flex: 1;
+}
+
+.log-panel {
+  flex: 1;
+  background: #10121c;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 12px;
+  overflow-y: auto;
+}
+
+.log-line {
+  margin: 2px 0;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.log-line.info {
+  color: #b0c4ff;
+}
+
+.log-line.step {
+  color: #f7e9b0;
+}
+
+.log-line.error {
+  color: #ff9b9b;
+}
+
+.node-circle {
+  stroke: #f5f5f5;
+  stroke-width: 1.4px;
+  fill: #28304a;
+  transition: fill 0.18s ease, r 0.18s ease, stroke-width 0.18s ease;
+}
+
+.node-circle.current {
+  fill: #f5a623;
+  stroke-width: 2px;
+}
+
+.node-circle.visited {
+  fill: #ff0000;
+}
+
+.node-circle.found {
+  fill: #1abc9c;
+  stroke-width: 2px;
+}
+
+.node-circle.new-node {
+  fill: #9b59b6;
+  stroke-width: 2px;
+}
+
+.node-text {
+  fill: #f5f5f5;
+  font-size: 13px;
+  dominant-baseline: middle;
+  text-anchor: middle;
+}
+
+.edge-line {
+  stroke: #525a78;
+  stroke-width: 1.2px;
+}
+
+@media (max-width: 1000px) {
+  .main-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #treeSvg {
+    height: 420px;
+  }
 }
